@@ -33,8 +33,7 @@ public class Main {
         System.out.println(sb);
     }
 
-    public static List<Integer> sol(LinkedList<Integer> a, LinkedList<Integer> b,
-            List<Integer> ans) {
+    public static List<Integer> sol(List<Integer> a, List<Integer> b, List<Integer> ans) {
 
         if (a.isEmpty() || b.isEmpty()) {
             return ans;
@@ -47,12 +46,8 @@ public class Main {
 
         if (amax == bmax) {
             ans.add(amax);
-            for (int i = 0; i <= a_idx; i++) {
-                a.removeFirst();
-            }
-            for (int i = 0; i <= b_idx; i++) {
-                b.removeFirst();
-            }
+            a = a.subList(a_idx + 1, a.size());
+            b = b.subList(b_idx + 1, b.size());
             return sol(a, b, ans);
         } else if (amax > bmax) {
             a.remove(a_idx);
