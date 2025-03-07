@@ -17,8 +17,7 @@ public class Main {
 		for (int r = 0; r < N; r++) {
 			st = new StringTokenizer(br.readLine());
 			for (int c = 0; c < N; c++) {
-				int tmp = Integer.parseInt(st.nextToken());
-				dis[r][c] = tmp == 0 ? INF : tmp;
+				dis[r][c] = Integer.parseInt(st.nextToken());
 			}
 		}
 
@@ -39,7 +38,7 @@ public class Main {
 
 		int distance = INF;
 		for (int i = 0; i < N; i++) {
-			if (((1 << i) & visit) > 0) {
+			if (((1 << i) & visit) > 0 || dis[cur][i ] == 0) {
 				continue;
 			}
 
