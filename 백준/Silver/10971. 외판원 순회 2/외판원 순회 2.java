@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-	static int[][] dp[], dis;
+	static int[][] dp, dis;
 	static int N;
 	static final int INF = 100_000_000;
 
@@ -11,7 +11,7 @@ public class Main {
 		StringTokenizer st;
 
 		N = Integer.parseInt(br.readLine());
-		dp = new int[N][N][1 << N]; // 시작지점, cur, visit;
+		dp = new int[N][1 << N]; // 시작지점, cur, visit;
 		dis = new int[N][N];
 
 		for (int r = 0; r < N; r++) {
@@ -22,24 +22,19 @@ public class Main {
 			}
 		}
 
-		int ans = INF;
-		for (int i = 0; i < N; i++) {
-			ans = Math.min(ans, tsp(i, i, 1 << i));
-		}
-
-		System.out.println(ans);
+		System.out.println(tsp(0, 1));
 	}
 
-	static int tsp(int start, int cur, int visit) {
+	static int tsp(int cur, int visit) {
 		if (visit == (1 << N) - 1) {
-			if (dis[cur][start] == 0) {
+			if (dis[cur][0] == 0) {
 				return INF;
 			}
-			return dis[cur][start];
+			return dis[cur][0];
 		}
 
-		if (dp[start][cur][visit] != 0) {
-			return dp[start][cur][visit];
+		if (dp[cur][visit] != 0) {
+			return dp[cur][visit];
 		}
 
 		int distance = INF;
@@ -48,9 +43,9 @@ public class Main {
 				continue;
 			}
 
-			distance = Math.min(distance, tsp(start, i, visit | (1 << i)) + dis[cur][i]);
+			distance = Math.min(distance, tsp(i, visit | (1 << i)) + dis[cur][i]);
 		}
-		dp[start][cur][visit] = distance;
+		dp[cur][visit] = distance;
 
 		return distance;
 	}
