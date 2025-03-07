@@ -6,18 +6,17 @@ public class Main {
 	static int N;
 	static final int INF = 100_000_000;
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 
-		N = Integer.parseInt(br.readLine());
+		N = read();
 		dp = new int[N][1 << N]; // 시작지점, cur, visit;
 		dis = new int[N][N];
 
 		for (int r = 0; r < N; r++) {
-			st = new StringTokenizer(br.readLine());
 			for (int c = 0; c < N; c++) {
-				dis[r][c] = Integer.parseInt(st.nextToken());
+				dis[r][c] = read();
 			}
 		}
 
@@ -48,4 +47,13 @@ public class Main {
 
 		return distance;
 	}
+    
+    private static int read() throws Exception {
+        int c, n = System.in.read() & 15;
+        while ((c = System.in.read()) >= 48)
+            n = (n << 3) + (n << 1) + (c & 15);
+        if (c == 13)
+            System.in.read();
+        return n;
+    }
 }
