@@ -23,20 +23,9 @@ public class Main {
 			st = new StringTokenizer(br.readLine());
 			for (int c = 0; c < C; c++) {
 				arr[r][c] = Integer.parseInt(st.nextToken());
+                cnt[r][c] = -1;
 			}
 		}
-		
-		for (int r = 0; r < R; r++) {
-			for (int c = 0; c < C; c++) {
-				cnt[r][c] = -1;
-			}
-		}
-
-		
-		
-//		for (int i = 0; i < R; i++) {
-//			System.out.println(Arrays.stream(cnt[i]).boxed().collect(Collectors.toList()));
-//		}
 
 		System.out.print(dfs(0, 0));
 	}
