@@ -2,23 +2,19 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        int[] stack = new int[1_000_001];
-        int size = 0;
+        int size = 0, ans = 0;
 
 
         int N = read();
+        int[] stack = new int[N+1];
         for (int i = 0; i < N; i++) {
             int a = read();
             if (a != 0) {
                 stack[size++] = a;
+                ans += a;
             } else {
-                size--;
+                ans -= stack[--size];
             }
-        }
-
-        int ans = 0;
-        for (int i = 0; i < size; i++) {
-            ans += stack[i];
         }
 
         System.out.println(ans);
